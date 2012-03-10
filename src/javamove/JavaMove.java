@@ -16,6 +16,7 @@ public class JavaMove {
     public static void main(String[] args) {
         // TODO code application logic here
         MainFrame myframe = new MainFrame();
+        //myframe.setSize(400, 300);
         myframe.setVisible(true);
     }
 }

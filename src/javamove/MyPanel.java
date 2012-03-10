@@ -29,6 +29,8 @@ public class MyPanel extends javax.swing.JPanel {
     public float x = 0;
     public float y = 0;
     public Paint color = Color.green;
+    public float ball_width = 10.0f;
+    public float ball_height = 10.0f;
 
     /** Creates new form MyPanel */
     public MyPanel() {
@@ -50,7 +52,7 @@ public class MyPanel extends javax.swing.JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
-        Shape circle = new Ellipse2D.Float(x, y, 10.0f, 10.0f);
+        Shape circle = new Ellipse2D.Float(x, y, ball_width, ball_height);
         g2d.draw(circle);
         g2d.setPaint(color);
         g2d.fill(circle);

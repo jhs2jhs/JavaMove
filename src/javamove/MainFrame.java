@@ -33,10 +33,14 @@ public class MainFrame extends javax.swing.JFrame implements Runnable{
     Thread mythread = new Thread();
     int state = 0;
     int state_yunsu = 1;
+    int state_yuanzhou = 2;
+    int state_paoti = 3;
+    int state_tanshe = 4;
     
     /** Creates new form MainFrame */
     public MainFrame() {
         initComponents();
+        System.out.println(this.mypanel.getWidth());//.getWidth());
         this.mypanel.setLayout(new BoxLayout(this.mypanel, BoxLayout.PAGE_AXIS));
         panel.setVisible(true);
         this.mypanel.add(panel);
@@ -149,23 +153,31 @@ public class MainFrame extends javax.swing.JFrame implements Runnable{
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         //System.out.println(evt.toString());
-        int y = this.mypanel.getHeight();
-        int x = this.mypanel.getWidth();
-        System.out.println(y+":"+x);
-        panel.changexy(20, 20);
-        System.out.println(panel.y+":"+panel.x);
-        panel.repaint();
+        if (mythread.isAlive()){
+            mythread.interrupt();
+        }
+        this.state = this.state_yuanzhou;
+        mythread = new Thread(this);
+        mythread.start();
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        //System.out.println(evt.toString());
+        if (mythread.isAlive()){
+            mythread.interrupt();
+        }
+        this.state = this.state_paoti;
+        mythread = new Thread(this);
+        mythread.start();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        //System.out.println(evt.toString());
+        if (mythread.isAlive()){
+            mythread.interrupt();
+        }
+        this.state = this.state_tanshe;
+        mythread = new Thread(this);
+        mythread.start();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
@@ -196,8 +208,8 @@ public class MainFrame extends javax.swing.JFrame implements Runnable{
             float y = this.panel.myy();
             float t = 5;
             float speed = 5;
-            float x_final = this.panel.getWidth() - x;
-            float y_final = this.panel.getHeight();
+            float x_final = this.mypanel.getWidth() - this.panel.ball_width*2 - x;
+            float y_final = this.mypanel.getHeight();
             //float x_final = this.mypanel.getHeight() - x;
             //float y_final = this.mypanel.getHeight();
             float x_n = x_final-x;
